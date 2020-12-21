@@ -14,7 +14,7 @@
 
 <% List<Favoritebean> list =(List<Favoritebean>)request.getAttribute("list"); %>
 <% if(list.isEmpty()){
-    out.print("まだ観光地をお気に入り登録していません！");
+    out.print("まだ観光地をお気に入り登録していませんわ！");
 }%>
 
 <c:forEach var="list" items="${list}">
