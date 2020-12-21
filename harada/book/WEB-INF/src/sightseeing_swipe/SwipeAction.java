@@ -10,6 +10,10 @@ import javax.servlet.http.*;
 import java.util.List;
 import tool.Page;
 import java.util.Collections;
+import javax.servlet.http.Cookie;
+import java.io.*;
+import javax.servlet.*;
+import session.Session;
 
 public class SwipeAction extends Action {
 	// 表示させる値を取得し、シャッフルするメソッド
@@ -20,8 +24,8 @@ public class SwipeAction extends Action {
 		Page.header(out);
 
 		// cookie・sessionよりuser_idを取得
-		// String user_id = session.getAttribute("user");
-		int user_id=5;
+		Session session = new Session();
+		int user_id = session.getUser_id(request);
 
 		// user_idをもとに、DBから必要な値を取得
 		Sightseeing_PlaceDAO dao=new Sightseeing_PlaceDAO();
