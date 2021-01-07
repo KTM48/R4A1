@@ -13,12 +13,12 @@
 <tr>
 
 <% List<Favoritebean> list =(List<Favoritebean>)request.getAttribute("list"); %>
-<% if(list.isEmpty()){
-    out.print("まだ観光地をお気に入り登録していませんわ！");
-}%>
 
+<c:if test="${empty list}">
+  <p>まだ観光地を登録していません!</p>
+</c:if>
 <c:forEach var="list" items="${list}">
-　  <a href="sample2.html"><img src="image/${list.picture_path}"/></a><br>
+　  <a href="favoritedetail.jsp"><img src="image/${list.picture_path}"/></a><br>
 　　<c:out value="${list.sightseeing_name}"/><br>
 </c:forEach>
 

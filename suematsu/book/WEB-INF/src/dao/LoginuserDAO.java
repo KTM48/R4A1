@@ -7,10 +7,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-public class UserDAO extends DAO {
+public class LoginuserDAO extends DAO {
 						/*入力されたユーザーIDとパスワードがデータベースにあるも
 						のと一致しているか確認する*/
-		public User search(String email, String pass)
+		public User search(String email, String hashpass)
 	 	throws Exception {
 				User user=null;
 
@@ -21,7 +21,7 @@ public class UserDAO extends DAO {
 		st=con.prepareStatement(
 			"select * from user where email=? and pass=? ");
 		st.setString(1, email);
-		st.setString(2, pass);
+		st.setString(2, hashpass);
 		ResultSet rs=st.executeQuery();
 
 		while (rs.next()) {

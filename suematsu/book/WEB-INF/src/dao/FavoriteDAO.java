@@ -1,7 +1,7 @@
 package dao;
 
-import bean.*;
-
+//sqlへ接続するためのインポート
+import bean.Favorite;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,27 +10,19 @@ import java.util.ArrayList;
 
 
 public class FavoriteDAO extends DAO {
+	// favoriteデータベースに挿入する
+		public void insert(Favorite favorite) throws Exception {
+		  Connection con=getConnection();
 
-  public List<Favoritebean> search(int Keyword) throws Exception{
-    List<Favoritebean> list=new ArrayList<>();
 
-    Connection con=getConnection();
+			PreparedStatement st=con.prepareStatement("insert into favorite values (?,?)");
+			st.setInt(1,favorite.getSightseeing_Id());
+			st.setInt(2,favorite.getUser_Id());
 
-    PreparedStatement st=con.prepareStatement(
-      "SELECT PICTURE_PATH,SIGHTSEEING_NAME FROM sightseeing_place join favorite on sightseeing_place.sightseeing_id = favorite.sightseeing_id WHERE favorite.USER_ID = ?");
-    st.setInt(1,Keyword);
-    ResultSet rs=st.executeQuery();
+			st.executeUpdate();
 
-    while(rs.next()){
-      Favoritebean f=new Favoritebean();
-      f.setPicture_path(rs.getString("picture_path"));
-      f.setSightseeing_name(rs.getString("sightseeing_name"));
-      list.add(f);
-    }
+			st.close();
+			con.close();
+		}
 
-		st.close();
-		con.close();
-
-		return list;
-  }
 }

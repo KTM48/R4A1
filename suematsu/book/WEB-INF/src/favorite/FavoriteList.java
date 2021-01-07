@@ -22,30 +22,8 @@ public class FavoriteList extends HttpServlet {
 		PrintWriter out=response.getWriter();
 		Page.header(out);
 		try {
-//			if(session.getAttribute("user") != null){
-//        String session_id = (String)session.getAttribute("user");
-//        int user_id = Integer.parseInt(session_id);//ここにセッションのユーザIDが入ってます
-          //ログインか新規会員登録以外からメニュー画面へ遷移した場合
-//			}else{
-//  			Cookie[] cookies=request.getCookies();
 
-//		if (cookies!=null) {
-//     		int user_id;
-//     		for (Cookie cookie : cookies) {
-//        	String name=cookie.getName();
-//        	if(name.equals("user")){
-//          	String value=cookie.getValue();
-//          	user_id = Integer.parseInt(value);//ここにセッションのユーザIDが入ってます
-//        	}
-//      	}
-//   		} else {
-//		System.out.println("クッキーは存在しません");
-// 		}
-//		}
-
-
-			int Keyword=1;
-
+			int Keyword=5;
 			FavoriteDAO dao=new FavoriteDAO();
 			List<Favoritebean> list=dao.search(Keyword);
 
